@@ -4,9 +4,11 @@ import { Button, ButtonGroup, Label, Input } from 'reactstrap';
 
 const Send = () => {
 	const [rSelected, setRSelected] = useState(null);
+
 	useEffect(() => {
 		if (!rSelected) setRSelected(1);
-	});
+	}, [rSelected]);
+
 	const dropdown = (
 		<Input type='select' name='select' id='triggersSelect'>
 			<option>CustomerID</option>
@@ -14,7 +16,9 @@ const Send = () => {
 			<option>MarketingOptInInd</option>
 		</Input>
 	);
+
 	const showDropDown = rSelected === 3 ? dropdown : null;
+
 	return (
 		<>
 			<Label>Send</Label>

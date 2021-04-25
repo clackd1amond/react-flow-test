@@ -1,3 +1,5 @@
 import Triggers from './Triggers';
 import Send from './Send';
-export { Triggers, Send };
+import Campaign from './Campaign';
+import Delay from './Delay';
+export { Triggers, Send, Campaign, Delay };

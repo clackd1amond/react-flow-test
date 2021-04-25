@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactFlow, { Background } from 'react-flow-renderer';
-import { Triggers, Send } from '../FlowNodes';
+import { Triggers, Send, Campaign, Delay } from '../FlowNodes';
 
 const elements = [
 	{
@@ -21,7 +21,7 @@ const elements = [
 	},
 	{
 		id: '3',
-		data: { label: 'Campaign' },
+		data: { label: <Campaign /> },
 		position: { x: 300, y: 170 },
 		sourcePosition: 'left',
 		targetPosition: 'top',
@@ -29,7 +29,7 @@ const elements = [
 	},
 	{
 		id: '4',
-		data: { label: 'Delay' },
+		data: { label: <Delay /> },
 		position: { x: 5, y: 170 },
 		sourcePosition: 'bottom',
 		targetPosition: 'right',
@@ -38,7 +38,7 @@ const elements = [
 	{
 		id: '5',
 		data: { label: 'Send to' },
-		position: { x: 5, y: 300 },
+		position: { x: 5, y: 370 },
 		targetPosition: 'top',
 		style: { width: 600 },
 		type: 'output',
