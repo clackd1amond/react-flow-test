@@ -1,17 +1,17 @@
 import './App.css';
-import NameInput from '../NameInput';
+import BaseData from '../BaseData';
 import RuleBasedFlow from '../ReactFlow';
 import 'bootstrap/dist/css/bootstrap.css';
 
 function App() {
 	return (
-		<>
+		<div className='container'>
 			<h1 className='text-center text-primary'>MailGenesis rules nodes</h1>
-			<NameInput />
+			<BaseData />
 			<div className='App'>
 				<RuleBasedFlow />
 			</div>
-		</>
+		</div>
 	);
 }
 
