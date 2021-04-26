@@ -13,11 +13,15 @@ const RuleBasedFlow = () => {
 	const [elements, setElements] = useState([]);
 	const [reactflowInstance, setReactflowInstance] = useState(null);
 
-	const addNode = (
-		name,
-		type,
-		style = { width: 400, border: '1px solid #dddddd', borderRadius: 10, padding: 10, background: '#ffffff' }
-	) => {
+	const addNode = (name, type, style) => {
+		style = {
+			width: 400,
+			border: '1px solid #dddddd',
+			borderRadius: 10,
+			padding: '20px 10px',
+			background: '#ffffff',
+			...style,
+		};
 		setElements((els) =>
 			els.concat({
 				id: (els.length + 1).toString(),
@@ -47,6 +51,7 @@ const RuleBasedFlow = () => {
 			triggerBtn.disabled = true;
 			conditionBtn.disabled = false;
 		}
+		console.log(JSON.stringify(elements));
 	}, [reactflowInstance, elements.length, elements]);
 
 	const onLoad = useCallback(
@@ -62,7 +67,7 @@ const RuleBasedFlow = () => {
 	const flowStyles = { height: '70vh' };
 	return (
 		<>
-			<Row className='pt-2'>
+			<Row className='py-2'>
 				<Col sm={4}>
 					<Button
 						color='danger'
@@ -76,21 +81,22 @@ const RuleBasedFlow = () => {
 					<Button
 						color='success'
 						className='condition-node-button'
-						onClick={() => addNode(<Conditions />, 'conditionsNode')}
+						onClick={() => addNode(<Conditions />, 'conditionsNode', { width: 700 })}
 					>
 						Add Condition node
 					</Button>
 				</Col>
-				<Col sm={4}>
+				{/* <Col sm={4}>
 					<Button>Add Condition node</Button>
-				</Col>
+				</Col> */}
 			</Row>
 			<ReactFlow elements={elements} style={flowStyles} onLoad={onLoad} nodeTypes={nodeTypes} onConnect={onConnect}>
 				<Background gap={16} color='#888' />
 				<MiniMap
 					nodeColor={(n) => {
 						// if (n.type === 'input') return '#1890ff';
-						if (n.id === 'trigger') return '#dc3545';
+						if (n.type === 'triggerNode') return '#dc3545';
+						if (n.type === 'conditionsNode') return '#28a745';
 						return '#dddddd';
 					}}
 					nodeStrokeWidth={0}
