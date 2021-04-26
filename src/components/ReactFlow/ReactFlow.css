@@ -1,3 +1,8 @@
+.react-flow__node-default,
+.react-flow__node-input,
+.react-flow__node-output {
+	border-radius: 5px !important;
+}
 .react-flow__node-default {
-	border-color: rgb(0 123 255 / 50%);
+	border-color: #ddd;
 }
