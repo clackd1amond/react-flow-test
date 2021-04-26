@@ -3,6 +3,19 @@
 .react-flow__node-output {
 	border-radius: 5px !important;
 }
-.react-flow__node-default {
-	border-color: #ddd;
+.react-flow__node-input.selected,
+.react-flow__node-input.selected:hover,
+.react-flow__node-triggerNode.selected,
+.react-flow__node-triggerNode.selected:hover {
+	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+}
+
+.react-flow__handle {
+	height: 20px;
+	width: 20px;
+	border: 2px solid #ffffff;
+	box-shadow: 0px 2px 10px rgba(0, 0, 0, 0.2);
+}
+.react-flow__handle-bottom {
+	bottom: -10px;
 }
