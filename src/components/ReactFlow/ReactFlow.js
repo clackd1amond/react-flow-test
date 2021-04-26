@@ -1,11 +1,12 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactFlow, { addEdge, Controls, Background, MiniMap } from 'react-flow-renderer';
 import { Row, Col, Button } from 'reactstrap';
-import { Trigger, Send, Campaign, Delay, SendTo } from '../FlowNodes';
+import { Trigger, Conditions } from '../FlowNodes';
 import './ReactFlow.css';
 
 const nodeTypes = {
 	triggerNode: Trigger,
+	conditionsNode: Conditions,
 };
 
 const RuleBasedFlow = () => {
@@ -30,23 +31,23 @@ const RuleBasedFlow = () => {
 
 	const onConnect = (params) => setElements((els) => addEdge(params, els));
 
-	// useEffect(() => {
-	// 	setElements([
-	// 		{
-	// 			id: 'trigger',
-	// 			data: { label: <Trigger /> },
-	// 			position: { x: 5, y: 5 },
-	// 			style: { width: 400, border: '1px solid #dddddd', borderRadius: 10, padding: 10, background: '#ffffff' },
-	// 			type: 'triggerNode',
-	// 		},
-	// 	]);
-	// }, []);
-
 	useEffect(() => {
+		const triggerBtn = document.querySelector('.trigger-node-button');
+		const conditionBtn = document.querySelector('.condition-node-button');
+
 		if (reactflowInstance && elements.length > 0) {
 			reactflowInstance.fitView({ padding: 0.25 });
 		}
-	}, [reactflowInstance, elements.length]);
+
+		const checkTriggerNode = elements.findIndex((elem) => elem.type === 'triggerNode');
+		if (checkTriggerNode === -1) {
+			triggerBtn.disabled = false;
+			conditionBtn.disabled = true;
+		} else {
+			triggerBtn.disabled = true;
+			conditionBtn.disabled = false;
+		}
+	}, [reactflowInstance, elements.length, elements]);
 
 	const onLoad = useCallback(
 		(rfi) => {
@@ -63,27 +64,28 @@ const RuleBasedFlow = () => {
 		<>
 			<Row className='pt-2'>
 				<Col sm={4}>
-					<Button color='danger' onClick={() => addNode(<Trigger />, 'triggerNode')}>
+					<Button
+						color='danger'
+						className='trigger-node-button'
+						onClick={() => addNode(<Trigger />, 'triggerNode')}
+					>
 						Add Trigger node
 					</Button>
 				</Col>
 				<Col sm={4}>
-					<Button color='success' disabled>
+					<Button
+						color='success'
+						className='condition-node-button'
+						onClick={() => addNode(<Conditions />, 'conditionsNode')}
+					>
 						Add Condition node
 					</Button>
 				</Col>
 				<Col sm={4}>
-					<Button disabled>Add Condition node</Button>
+					<Button>Add Condition node</Button>
 				</Col>
 			</Row>
-			<ReactFlow
-				elements={elements}
-				style={flowStyles}
-				snapToGrid
-				onLoad={onLoad}
-				nodeTypes={nodeTypes}
-				onConnect={onConnect}
-			>
+			<ReactFlow elements={elements} style={flowStyles} onLoad={onLoad} nodeTypes={nodeTypes} onConnect={onConnect}>
 				<Background gap={16} color='#888' />
 				<MiniMap
 					nodeColor={(n) => {

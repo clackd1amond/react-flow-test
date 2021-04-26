@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import './App.css';
 import BaseData from '../BaseData';
 import RuleBasedFlow from '../ReactFlow';
-import 'bootstrap/dist/css/bootstrap.css';
 import { Button } from 'reactstrap';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faLongArrowAltRight } from '@fortawesome/free-solid-svg-icons';

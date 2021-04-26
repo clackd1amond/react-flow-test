@@ -1,4 +1,3 @@
-import 'bootstrap/dist/css/bootstrap.css';
 import { FormGroup, Label, Input } from 'reactstrap';
 import { Handle } from 'react-flow-renderer';
 
