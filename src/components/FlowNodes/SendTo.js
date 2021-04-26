@@ -6,9 +6,7 @@ const SendTo = ({ onSegmentSelect }) => {
 
 	useEffect(() => {
 		if (!rSelected) setRSelected(1);
-		if (rSelected === 3) {
-			onSegmentSelect();
-		}
+		onSegmentSelect(rSelected);
 	}, [rSelected]);
 
 	return (
