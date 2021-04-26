@@ -9,13 +9,13 @@ const Delay = () => {
 					<Label for='delaySelect'>Delay</Label>
 				</Col>
 				<Col sm={6}>
-					<Input type='number' value={0} />
+					<Input type='number' defaultValue={3} />
 				</Col>
 				<Col sm={6}>
-					<Input type='select' name='select' id='delaySelect'>
+					<Input type='select' name='select' id='delaySelect' defaultValue={'Days'}>
 						<option>Minutes</option>
 						<option>Hours</option>
-						<option selected>Days</option>
+						<option>Days</option>
 					</Input>
 				</Col>
 			</FormGroup>

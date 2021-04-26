@@ -17,10 +17,10 @@ const Campaign = () => {
 			</FormGroup>
 			<FormGroup check className='d-flex'>
 				<Label check className='mr-5'>
-					<Input type='checkbox' checked /> Track opens
+					<Input type='checkbox' defaultChecked /> Track opens
 				</Label>
 				<Label check className='mr-5'>
-					<Input type='checkbox' checked /> Track clicks
+					<Input type='checkbox' defaultChecked /> Track clicks
 				</Label>
 				<Label check className='mr-5'>
 					<Input type='checkbox' /> Ignore unsubscribed
