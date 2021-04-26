@@ -1,6 +1,7 @@
 import React from 'react';
 import ReactFlow, { Background } from 'react-flow-renderer';
 import { Triggers, Send, Campaign, Delay } from '../FlowNodes';
+import './ReactFlow.css';
 
 const elements = [
 	{
@@ -39,9 +40,9 @@ const elements = [
 		id: '5',
 		data: { label: 'Send to' },
 		position: { x: 5, y: 370 },
+		sourcePosition: 'bottom',
 		targetPosition: 'top',
 		style: { width: 600 },
-		type: 'output',
 	},
 	{ id: 'e1-2', source: '1', target: '2', animated: true, style: { stroke: '#1890ff' } },
 	{ id: 'e2-3', source: '2', target: '3', animated: true, style: { stroke: '#1890ff' } },
@@ -52,10 +53,10 @@ const elements = [
 	// { id: 'e1-3', source: '1', target: '3', animated: false },
 ];
 
-const flowStyles = { height: 600 };
+const flowStyles = { height: '70vh' };
 
 const BasicFlow = () => (
-	<ReactFlow elements={elements} style={flowStyles}>
+	<ReactFlow elements={elements} style={flowStyles} snapToGrid={true}>
 		{/* <Background variant='dots' gap={16} size={0.5} color={'purple'} /> */}
 	</ReactFlow>
 );
