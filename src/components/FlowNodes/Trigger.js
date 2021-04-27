@@ -5,7 +5,7 @@ const Trigger = () => {
 	const flowStyle = { fontSize: '1.2rem', padding: '5px 20px' };
 	return (
 		<>
-			<p for='triggersSelect' className='badge badge-pill badge-danger' style={flowStyle}>
+			<p className='badge badge-pill badge-danger' style={flowStyle}>
 				Trigger
 			</p>
 			<FormGroup>

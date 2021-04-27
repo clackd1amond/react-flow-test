@@ -6,7 +6,13 @@
 .react-flow__node-input.selected,
 .react-flow__node-input.selected:hover,
 .react-flow__node-triggerNode.selected,
-.react-flow__node-triggerNode.selected:hover {
+.react-flow__node-triggerNode.selected:hover,
+.react-flow__node-conditionsNode.selected,
+.react-flow__node-conditionsNode.selected:hover,
+.react-flow__node-delayNode.selected,
+.react-flow__node-delayNode.selected:hover,
+.react-flow__node-sendNode.selected,
+.react-flow__node-sendNode.selected:hover {
 	box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
 }
 

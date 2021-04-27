@@ -35,7 +35,10 @@ const RuleBasedFlow = () => {
 		);
 	};
 
-	const onConnect = (params) => setElements((els) => addEdge(params, els));
+	const onConnect = (params) =>
+		setElements((els) =>
+			addEdge({ ...params, animated: true, style: { stroke: '#1890ff', strokeWidth: '2px' } }, els)
+		);
 
 	useEffect(() => {
 		const triggerBtn = document.querySelector('.trigger-node-button');
@@ -66,7 +69,7 @@ const RuleBasedFlow = () => {
 		(rfi) => {
 			if (!reactflowInstance) {
 				setReactflowInstance(rfi);
-				// console.log('flow loaded:', rfi);
+				console.log('flow loaded:', rfi);
 			}
 		},
 		[reactflowInstance]
@@ -117,7 +120,6 @@ const RuleBasedFlow = () => {
 				<Background gap={16} color='#888' />
 				<MiniMap
 					nodeColor={(n) => {
-						// if (n.type === 'input') return '#1890ff';
 						if (n.type === 'triggerNode') return '#dc3545';
 						if (n.type === 'conditionsNode') return '#007bff';
 						if (n.type === 'delayNode') return '#ffc107';
