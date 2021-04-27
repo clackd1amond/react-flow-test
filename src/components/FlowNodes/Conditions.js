@@ -38,10 +38,10 @@ const Conditions = () => {
 };
 export default Conditions;
 
-const ConditionsCreate = (block) => {
+const ConditionsCreate = () => {
 	let i = 1;
-	const addConditions = (blockSelector) => {
-		const block = document.querySelector(blockSelector);
+	const addConditions = (target) => {
+		const block = target.closest('.btn-outline-success').previousElementSibling;
 		const conditionsGroup = document.createElement('div');
 		conditionsGroup.classList.add('mb-3', 'form-inline', 'd-flex', 'justify-content-center');
 		conditionsGroup.setAttribute('id', `cond-group-${i++}`);
@@ -72,7 +72,7 @@ const ConditionsCreate = (block) => {
 	return (
 		<>
 			<div className='conditions-block'></div>
-			<Button outline color='success' className='mb-3' onClick={() => addConditions('.conditions-block')}>
+			<Button outline color='success' className='mb-3' onClick={(e) => addConditions(e.target)}>
 				<FontAwesomeIcon icon={faPlus} />
 			</Button>
 		</>
