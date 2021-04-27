@@ -18,7 +18,7 @@ export default class App extends Component {
 	render() {
 		const flowBlock = (
 			<>
-				<div class='alert alert-primary' role='alert'>
+				<div className='alert alert-primary' role='alert'>
 					Use <strong>Delete</strong> key to remove nodes. Note: Trigger node cannot be removed
 				</div>
 				<div className='App'>

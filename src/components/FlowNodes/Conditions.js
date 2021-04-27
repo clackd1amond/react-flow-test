@@ -43,7 +43,7 @@ const ConditionsCreate = (block) => {
 	const addConditions = (blockSelector) => {
 		const block = document.querySelector(blockSelector);
 		const conditionsGroup = document.createElement('div');
-		conditionsGroup.classList.add('mb-3', 'form-inline');
+		conditionsGroup.classList.add('mb-3', 'form-inline', 'd-flex', 'justify-content-center');
 		conditionsGroup.setAttribute('id', `cond-group-${i++}`);
 		conditionsGroup.innerHTML = `
 			<div className="form-group">
