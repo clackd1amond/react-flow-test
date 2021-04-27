@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useCallback } from 'react';
-import ReactFlow, { addEdge, Controls, Background, MiniMap } from 'react-flow-renderer';
+import ReactFlow, { removeElements, addEdge, Controls, Background, MiniMap } from 'react-flow-renderer';
 import { Row, Col, Button } from 'reactstrap';
 import { Trigger, Conditions, Delay, Send } from '../FlowNodes';
 import './ReactFlow.css';
@@ -14,8 +14,9 @@ const nodeTypes = {
 const RuleBasedFlow = () => {
 	const [elements, setElements] = useState([]);
 	const [reactflowInstance, setReactflowInstance] = useState(null);
+	const onElementsRemove = (elementsToRemove) => setElements((els) => removeElements(elementsToRemove, els));
 
-	const addNode = (name, type, style) => {
+	const addNode = (name, type, style, selectable = true) => {
 		style = {
 			width: 400,
 			border: '1px solid #dddddd',
@@ -24,6 +25,7 @@ const RuleBasedFlow = () => {
 			background: '#ffffff',
 			...style,
 		};
+
 		setElements((els) =>
 			els.concat({
 				id: (els.length + 1).toString(),
@@ -31,6 +33,7 @@ const RuleBasedFlow = () => {
 				position: { x: Math.random() * window.innerWidth, y: Math.random() * window.innerHeight },
 				type,
 				style,
+				selectable,
 			})
 		);
 	};
@@ -83,7 +86,7 @@ const RuleBasedFlow = () => {
 					<Button
 						color='danger'
 						className='trigger-node-button'
-						onClick={() => addNode(<Trigger />, 'triggerNode', { background: '#fae1e3' })}
+						onClick={() => addNode(<Trigger />, 'triggerNode', { background: '#fae1e3' }, false)}
 					>
 						Add Trigger node
 					</Button>
@@ -92,7 +95,7 @@ const RuleBasedFlow = () => {
 					<Button
 						color='primary'
 						className='condition-node-button'
-						onClick={() => addNode(<Conditions />, 'conditionsNode', { width: 700, background: '#d9ebff' })}
+						onClick={() => addNode(<Conditions />, 'conditionsNode', { width: 800, background: '#d9ebff' })}
 					>
 						Add Condition node
 					</Button>
@@ -116,7 +119,15 @@ const RuleBasedFlow = () => {
 					</Button>
 				</Col>
 			</Row>
-			<ReactFlow elements={elements} style={flowStyles} onLoad={onLoad} nodeTypes={nodeTypes} onConnect={onConnect}>
+			<ReactFlow
+				elements={elements}
+				style={flowStyles}
+				onLoad={onLoad}
+				nodeTypes={nodeTypes}
+				onConnect={onConnect}
+				onElementsRemove={onElementsRemove}
+				deleteKeyCode={46}
+			>
 				<Background gap={16} color='#888' />
 				<MiniMap
 					nodeColor={(n) => {

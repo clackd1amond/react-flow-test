@@ -17,9 +17,14 @@ export default class App extends Component {
 
 	render() {
 		const flowBlock = (
-			<div className='App'>
-				<RuleBasedFlow />
-			</div>
+			<>
+				<div class='alert alert-primary' role='alert'>
+					Use <strong>Delete</strong> key to remove nodes. Note: Trigger node cannot be removed
+				</div>
+				<div className='App'>
+					<RuleBasedFlow />
+				</div>
+			</>
 		);
 		const nextStepBtn = (
 			<Button color='primary' size='lg' block onClick={this.showFlowBlock}>

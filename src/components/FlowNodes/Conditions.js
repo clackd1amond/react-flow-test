@@ -39,41 +39,40 @@ const Conditions = () => {
 export default Conditions;
 
 const ConditionsCreate = (block) => {
-	const buttonsStyle = { borderRadius: '100%', padding: '4px 10px' };
 	let i = 1;
 	const addConditions = (blockSelector) => {
 		const block = document.querySelector(blockSelector);
 		const conditionsGroup = document.createElement('div');
-		conditionsGroup.classList.add('mb-3');
+		conditionsGroup.classList.add('mb-3', 'form-inline');
 		conditionsGroup.setAttribute('id', `cond-group-${i++}`);
 		conditionsGroup.innerHTML = `
-			<div className="form-group d-flex">
-				<select name="custom-field" id="custom-field" class="form-control">
+			<div className="form-group">
+				<select name="custom-field" id="custom-field" class="form-control mr-3">
 					<option value="LastTransactionType">LastTransactionType</option>
 					<option value="CustomerID">CustomerID</option>
 					<option value="FirstName">FirstName</option>
 				</select>
-				<select name="condition-state" id="condition-state" class="form-control">
+			</div>
+			<div className="form-group mr-3">
+				<select name="condition-state" id="condition-state" class="form-control mr-3">
 					<option value="is">is</option>
 					<option value="is not">is not</option>
 					<option value="less then">less then</option>
 				</select>
-				<input name="condition-value" id="condition-value" type="text" class="form-control"/>
+				<input name="condition-value" id="condition-value" type="text" class="form-control mr-3"/>
 			</div>
 		`;
+		const removeBtn = document.createElement('button');
+		removeBtn.classList.add('btn', 'btn-outline', 'btn-danger');
+		removeBtn.innerHTML = '<i class="fas fa-times"></i>';
+		removeBtn.addEventListener('click', () => conditionsGroup.remove());
+		conditionsGroup.append(removeBtn);
 		block.append(conditionsGroup);
 	};
 	return (
 		<>
 			<div className='conditions-block'></div>
-			<Button
-				outline
-				color='success'
-				size='lg'
-				style={buttonsStyle}
-				className='mb-3'
-				onClick={() => addConditions('.conditions-block')}
-			>
+			<Button outline color='success' className='mb-3' onClick={() => addConditions('.conditions-block')}>
 				<FontAwesomeIcon icon={faPlus} />
 			</Button>
 		</>
