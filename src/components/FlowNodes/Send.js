@@ -1,24 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Button, ButtonGroup, Input } from 'reactstrap';
+import { FormGroup, Label, Input } from 'reactstrap';
 import { Handle } from 'react-flow-renderer';
 
 const Send = () => {
-	const [rSelected, setRSelected] = useState(null);
 	const flowStyle = { fontSize: '1.2rem', padding: '5px 20px' };
-
-	useEffect(() => {
-		if (!rSelected) setRSelected(1);
-	}, [rSelected]);
-
-	const dropdown = (
-		<Input type='select' name='select' id='triggersSelect'>
-			<option>CustomerID</option>
-			<option>FTD</option>
-			<option>MarketingOptInInd</option>
-		</Input>
-	);
-
-	const showDropDown = rSelected === 3 ? dropdown : null;
 
 	return (
 		<>
@@ -31,18 +15,30 @@ const Send = () => {
 			<p className='badge badge-pill badge-success' style={flowStyle}>
 				Send
 			</p>
-			<ButtonGroup className='d-block mb-3'>
-				<Button outline color='primary' onClick={() => setRSelected(1)} active={rSelected === 1}>
-					Only once
-				</Button>
-				<Button outline color='primary' onClick={() => setRSelected(2)} active={rSelected === 2}>
-					On every trigger
-				</Button>
-				<Button outline color='primary' onClick={() => setRSelected(3)} active={rSelected === 3}>
-					For every unique
-				</Button>
-			</ButtonGroup>
-			{showDropDown}
+			<FormGroup>
+				<Input type='select' name='select' id='campaignSelect'>
+					<option>L247_Conversion_RNP_EN_Day1</option>
+					<option>L247_Conversion_RNP_EN_Day4</option>
+					<option>L247_Conversion_RNP_EN_Day7</option>
+					<option>L247_Conversion_RNP_EN_Day14</option>
+					<option>L247_Conversion_RNP_EN_Day20</option>
+					<option>L247_Conversion_RNP_EN_Day30</option>
+				</Input>
+			</FormGroup>
+			<FormGroup check className='d-flex'>
+				<Label check className='mr-5'>
+					<Input type='checkbox' defaultChecked /> Track opens
+				</Label>
+				<Label check className='mr-5'>
+					<Input type='checkbox' defaultChecked /> Track clicks
+				</Label>
+				<Label check className='mr-5'>
+					<Input type='checkbox' /> Ignore unsubscribed
+				</Label>
+				<Label check className='mr-5'>
+					<Input type='checkbox' /> Include unconfirmed
+				</Label>
+			</FormGroup>
 		</>
 	);
 };
