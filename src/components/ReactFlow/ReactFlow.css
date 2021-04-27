@@ -22,19 +22,21 @@
 .react-flow__handle-top {
 	top: -10px;
 }
-.handle-yes:after {
-	content: 'yes';
-	color: #d2f95d;
+.handle-yes:after,
+.handle-no:after {
 	position: relative;
-	top: -24px;
-	left: -4px;
+	background: white;
+	padding: 2px 9px;
+	border-radius: 20px;
 	text-align: center;
+	top: -28px;
+	left: -13px;
+}
+.handle-yes:after {
+	content: 'YES';
+	color: #d2f95d;
 }
 .handle-no:after {
-	content: 'no';
+	content: 'NO';
 	color: #f96a5d;
-	position: relative;
-	top: -24px;
-	left: -2px;
-	text-align: center;
 }

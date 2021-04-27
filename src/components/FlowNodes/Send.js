@@ -1,8 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { Button, ButtonGroup, Label, Input } from 'reactstrap';
+import { Button, ButtonGroup, Input } from 'reactstrap';
+import { Handle } from 'react-flow-renderer';
 
 const Send = () => {
 	const [rSelected, setRSelected] = useState(null);
+	const flowStyle = { fontSize: '1.2rem', padding: '5px 20px' };
 
 	useEffect(() => {
 		if (!rSelected) setRSelected(1);
@@ -20,7 +22,15 @@ const Send = () => {
 
 	return (
 		<>
-			<Label>Send</Label>
+			<Handle
+				type='target'
+				position='top'
+				style={{ background: '#28a745' }}
+				onConnect={(params) => console.log('handle onConnect', params)}
+			/>
+			<p className='badge badge-pill badge-success' style={flowStyle}>
+				Send
+			</p>
 			<ButtonGroup className='d-block mb-3'>
 				<Button outline color='primary' onClick={() => setRSelected(1)} active={rSelected === 1}>
 					Only once

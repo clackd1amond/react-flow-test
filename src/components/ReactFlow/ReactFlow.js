@@ -1,12 +1,14 @@
 import React, { useState, useEffect, useCallback } from 'react';
 import ReactFlow, { addEdge, Controls, Background, MiniMap } from 'react-flow-renderer';
 import { Row, Col, Button } from 'reactstrap';
-import { Trigger, Conditions } from '../FlowNodes';
+import { Trigger, Conditions, Delay, Send } from '../FlowNodes';
 import './ReactFlow.css';
 
 const nodeTypes = {
 	triggerNode: Trigger,
 	conditionsNode: Conditions,
+	delayNode: Delay,
+	sendNode: Send,
 };
 
 const RuleBasedFlow = () => {
@@ -38,6 +40,8 @@ const RuleBasedFlow = () => {
 	useEffect(() => {
 		const triggerBtn = document.querySelector('.trigger-node-button');
 		const conditionBtn = document.querySelector('.condition-node-button');
+		const delayBtn = document.querySelector('.delay-node-button');
+		const sendBtn = document.querySelector('.send-node-button');
 
 		if (reactflowInstance && elements.length > 0) {
 			reactflowInstance.fitView({ padding: 0.25 });
@@ -47,9 +51,13 @@ const RuleBasedFlow = () => {
 		if (checkTriggerNode === -1) {
 			triggerBtn.disabled = false;
 			conditionBtn.disabled = true;
+			delayBtn.disabled = true;
+			sendBtn.disabled = true;
 		} else {
 			triggerBtn.disabled = true;
 			conditionBtn.disabled = false;
+			delayBtn.disabled = false;
+			sendBtn.disabled = false;
 		}
 		console.log(JSON.stringify(elements));
 	}, [reactflowInstance, elements.length, elements]);
@@ -68,27 +76,42 @@ const RuleBasedFlow = () => {
 	return (
 		<>
 			<Row className='py-2'>
-				<Col sm={4}>
+				<Col sm={3}>
 					<Button
 						color='danger'
 						className='trigger-node-button'
-						onClick={() => addNode(<Trigger />, 'triggerNode')}
+						onClick={() => addNode(<Trigger />, 'triggerNode', { background: '#fae1e3' })}
 					>
 						Add Trigger node
 					</Button>
 				</Col>
-				<Col sm={4}>
+				<Col sm={3}>
 					<Button
-						color='success'
+						color='primary'
 						className='condition-node-button'
-						onClick={() => addNode(<Conditions />, 'conditionsNode', { width: 700 })}
+						onClick={() => addNode(<Conditions />, 'conditionsNode', { width: 700, background: '#d9ebff' })}
 					>
 						Add Condition node
 					</Button>
 				</Col>
-				{/* <Col sm={4}>
-					<Button>Add Condition node</Button>
-				</Col> */}
+				<Col sm={3}>
+					<Button
+						color='warning'
+						className='delay-node-button'
+						onClick={() => addNode(<Delay />, 'delayNode', { width: 300, background: '#fff6da' })}
+					>
+						Add Delay node
+					</Button>
+				</Col>
+				<Col sm={3}>
+					<Button
+						color='success'
+						className='send-node-button'
+						onClick={() => addNode(<Send />, 'sendNode', { width: 700, background: '#dff2e3' })}
+					>
+						Add Send node
+					</Button>
+				</Col>
 			</Row>
 			<ReactFlow elements={elements} style={flowStyles} onLoad={onLoad} nodeTypes={nodeTypes} onConnect={onConnect}>
 				<Background gap={16} color='#888' />
@@ -96,7 +119,9 @@ const RuleBasedFlow = () => {
 					nodeColor={(n) => {
 						// if (n.type === 'input') return '#1890ff';
 						if (n.type === 'triggerNode') return '#dc3545';
-						if (n.type === 'conditionsNode') return '#28a745';
+						if (n.type === 'conditionsNode') return '#007bff';
+						if (n.type === 'delayNode') return '#ffc107';
+						if (n.type === 'sendNode') return '#28a745';
 						return '#dddddd';
 					}}
 					nodeStrokeWidth={0}

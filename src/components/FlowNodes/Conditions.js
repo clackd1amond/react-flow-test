@@ -1,4 +1,4 @@
-import { Button, FormGroup, Label } from 'reactstrap';
+import { Button } from 'reactstrap';
 import { Handle } from 'react-flow-renderer';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
@@ -10,14 +10,12 @@ const Conditions = () => {
 			<Handle
 				type='target'
 				position='top'
-				style={{ background: '#28a745' }}
+				style={{ background: '#007bff' }}
 				onConnect={(params) => console.log('handle onConnect', params)}
 			/>
-			<FormGroup>
-				<Label for='conditionsSelect' className='badge badge-pill badge-success' style={flowStyle}>
-					Conditions
-				</Label>
-			</FormGroup>
+			<p className='badge badge-pill badge-primary' style={flowStyle}>
+				Conditions
+			</p>
 			<ConditionsCreate />
 			<Handle
 				type='source'
