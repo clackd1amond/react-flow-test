@@ -7,7 +7,7 @@ import ReactFlow, {
 	Background,
 	MiniMap,
 } from 'react-flow-renderer';
-import ButtonBar from './ButtonBar';
+import ButtonBar from '../ButtonBar';
 import './ReactFlow.css';
 import { Trigger, Conditions, Delay, Send } from '../FlowNodes';
 
